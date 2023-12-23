@@ -54,10 +54,10 @@ scale = Vector2(0.25, 0.25)
 texture = ExtResource("1_db68v")
 
 [node name="Sprite" type="Sprite2D" parent="PathFollow2D"]
+modulate = Color(1.5, 1.5, 1.5, 1)
 scale = Vector2(0.25, 0.25)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
 "": SubResource("AnimationLibrary_8of4c")
 }
-autoplay = "selected"

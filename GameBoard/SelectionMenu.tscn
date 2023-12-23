@@ -1,0 +1,28 @@
+[gd_scene load_steps=2 format=3 uid="uid://b7ulinfqdrw74"]
+
+[ext_resource type="Script" path="res://GameBoard/SelectionMenu.gd" id="1_qsa6i"]
+
+[node name="SelectionMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qsa6i")
+
+[node name="Move" type="Button" parent="."]
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+text = "Move"
+
+[node name="Attack" type="Button" parent="."]
+layout_mode = 0
+offset_top = 35.0
+offset_right = 58.0
+offset_bottom = 66.0
+text = "Attack"
+
+[connection signal="pressed" from="Move" to="." method="_on_move_pressed"]
+[connection signal="pressed" from="Attack" to="." method="_on_attack_pressed"]

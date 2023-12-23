@@ -12,6 +12,8 @@ var current_path := PackedVector2Array()
 func initialize(walkable_cells: Array) -> void:
 	_pathfinder = PathFinder.new(grid, walkable_cells)
 
+func isInitialized() -> bool:
+	return _pathfinder != null
 
 ## Finds and draws the path between `cell_start` and `cell_end`
 func draw(cell_start: Vector2, cell_end: Vector2) -> void:

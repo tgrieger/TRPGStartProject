@@ -98,14 +98,17 @@ func _select_unit(cell: Vector2) -> void:
 	if not _units.has(cell):
 		return
 
+	$SelectionMenu.visible = true
+	$SelectionMenu.position = Vector2(cell.x * 80 + 80, cell.y * 80)
 	_active_unit = _units[cell]
 	_active_unit.is_selected = true
-	_walkable_cells = get_walkable_cells(_active_unit)
-	_unit_overlay.draw(_walkable_cells)
-	_unit_path.initialize(_walkable_cells)
+	#_walkable_cells = get_walkable_cells(_active_unit)
+	#_unit_overlay.draw(_walkable_cells)
+	#_unit_path.initialize(_walkable_cells)
 
 ## Deselects the active unit, clearing the cells overlay and interactive path drawing.
 func _deselect_active_unit() -> void:
+	$SelectionMenu.visible = false
 	_active_unit.is_selected = false
 	_unit_overlay.clear()
 	_unit_path.stop()
@@ -119,10 +122,23 @@ func _clear_active_unit() -> void:
 func _on_cursor_accept_pressed(cell: Vector2) -> void:
 	if not _active_unit:
 		_select_unit(cell)
+		
 	elif _active_unit.is_selected:
 		_move_active_unit(cell)
 
 ## Updates the interactive path's drawing if there's an active and selected unit.
 func _on_cursor_moved(new_cell: Vector2) -> void:
-	if _active_unit and _active_unit.is_selected:
+	if _unit_path.isInitialized() and _active_unit and _active_unit.is_selected:
 		_unit_path.draw(_active_unit.cell, new_cell)
+
+
+func _on_selection_menu_move_pressed():
+	_walkable_cells = get_walkable_cells(_active_unit)
+	_unit_overlay.draw(_walkable_cells)
+	_unit_path.initialize(_walkable_cells)
+	$SelectionMenu.visible = false
+	pass # Replace with function body.
+
+func _on_selection_menu_attack_pressed():
+	print("attack")
+	pass # Replace with function body.

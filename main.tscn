@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://vetr3fj5jr2h"]
+[gd_scene load_steps=12 format=3 uid="uid://vetr3fj5jr2h"]
 
 [ext_resource type="PackedScene" uid="uid://dr8hd243g1iu8" path="res://Background/Map.tscn" id="1_jrh60"]
 [ext_resource type="PackedScene" uid="uid://dsdlb7oajr6rt" path="res://Units/unit.tscn" id="2_kjguy"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://mi2kuv1bjto6" path="res://Units/squirrel.png" id="3_j1q4m"]
 [ext_resource type="PackedScene" uid="uid://dpkp50x7qr381" path="res://UnitOverlay/unit_overlay.tscn" id="4_sxja4"]
 [ext_resource type="PackedScene" uid="uid://c14nx2v42eqtg" path="res://GameBoard/Cursor/cursor.tscn" id="5_ay03w"]
+[ext_resource type="PackedScene" uid="uid://b7ulinfqdrw74" path="res://GameBoard/SelectionMenu.tscn" id="6_533av"]
 [ext_resource type="Script" path="res://GameBoard.gd" id="6_jymav"]
 [ext_resource type="PackedScene" uid="uid://42b0u388vmja" path="res://GameBoard/unit_path.tscn" id="8_f13m1"]
 [ext_resource type="Texture2D" uid="uid://bijgw2fs316wx" path="res://Units/bugcat.png" id="9_l2ob5"]
@@ -26,6 +27,9 @@ grid = ExtResource("3_6b5ud")
 [node name="UnitPath" parent="GameBoard" instance=ExtResource("8_f13m1")]
 position = Vector2(0, 0)
 
+[node name="SelectionMenu" parent="GameBoard" instance=ExtResource("6_533av")]
+visible = false
+
 [node name="Cursor" parent="GameBoard" instance=ExtResource("5_ay03w")]
 grid = ExtResource("3_6b5ud")
 
@@ -44,5 +48,7 @@ position = Vector2(44, 135)
 grid = ExtResource("3_6b5ud")
 skin = ExtResource("10_37agw")
 
+[connection signal="attack_pressed" from="GameBoard/SelectionMenu" to="GameBoard" method="_on_selection_menu_attack_pressed"]
+[connection signal="move_pressed" from="GameBoard/SelectionMenu" to="GameBoard" method="_on_selection_menu_move_pressed"]
 [connection signal="accept_pressed" from="GameBoard/Cursor" to="GameBoard" method="_on_cursor_accept_pressed"]
 [connection signal="moved" from="GameBoard/Cursor" to="GameBoard" method="_on_cursor_moved"]
